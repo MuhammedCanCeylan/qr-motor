@@ -539,78 +539,33 @@
                 opacity: 0;
                 animation: fadeInUp 0.6s ease forwards;
             }
-            .avatar-container {
-                animation-delay: .05s;
-            }
-            h1 {
-                animation-delay: .10s;
-            }
-            .subtitle {
-                animation-delay: .15s;
-            }
-            .datetime {
-                animation-delay: .20s;
-            }
-            .fuel-container {
-                animation-delay: .25s;
-            }
-            .status-box {
-                animation-delay: .30s;
-            }
-            .visit-stats {
-                animation-delay: .35s;
-            }
-            .btn-list .btn:nth-child(1) {
-                animation-delay: .40s;
-            }
-            .btn-list .btn:nth-child(2) {
-                animation-delay: .45s;
-            }
-            .btn-list .btn:nth-child(3) {
-                animation-delay: .50s;
-            }
-            .btn-list .btn:nth-child(4) {
-                animation-delay: .55s;
-            }
-            .btn-list .btn:nth-child(5) {
-                animation-delay: .60s;
-            }
-            .btn-list .btn:nth-child(6) {
-                animation-delay: .65s;
-            }
-            .btn-list .btn:nth-child(7) {
-                animation-delay: .70s;
-            }
-            .btn-list .btn:nth-child(8) {
-                animation-delay: .75s;
-            }
-            .btn-list .btn:nth-child(9) {
-                animation-delay: .80s;
-            }
-            footer {
-                animation-delay: .95s;
-            }
+            .avatar-container { animation-delay: .05s; }
+            h1 { animation-delay: .10s; }
+            .subtitle { animation-delay: .15s; }
+            .datetime { animation-delay: .20s; }
+            .fuel-container { animation-delay: .25s; }
+            .status-box { animation-delay: .30s; }
+            .visit-stats { animation-delay: .35s; }
+            .btn-list .btn:nth-child(1) { animation-delay: .40s; }
+            .btn-list .btn:nth-child(2) { animation-delay: .45s; }
+            .btn-list .btn:nth-child(3) { animation-delay: .50s; }
+            .btn-list .btn:nth-child(4) { animation-delay: .55s; }
+            .btn-list .btn:nth-child(5) { animation-delay: .60s; }
+            .btn-list .btn:nth-child(6) { animation-delay: .65s; }
+            .btn-list .btn:nth-child(7) { animation-delay: .70s; }
+            .btn-list .btn:nth-child(8) { animation-delay: .75s; }
+            .btn-list .btn:nth-child(9) { animation-delay: .80s; }
+            footer { animation-delay: .95s; }
         }
 
         @keyframes blink {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         @keyframes pulse-border {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.6);
-            }
-            70% {
-                box-shadow: 0 0 0 14px rgba(255, 51, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 51, 102, 0);
-            }
+            0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.6); }
+            70% { box-shadow: 0 0 0 14px rgba(255, 51, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
         }
         @keyframes fadeInUp {
             from {
@@ -646,7 +601,7 @@
 
         <!-- Profil -->
         <div class="avatar-container">
-            <img src="motor.jpg" onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400'" alt="Honda PCX 125" class="avatar-img">
+            <img src="motor.png" onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400'" alt="Honda PCX 125" class="avatar-img">
             <div class="badge-live">
                 <div class="pulse-dot"></div> CANLI
             </div>
@@ -730,7 +685,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
 
-            <!-- Acil Konum Gönder (YENİ) -->
+            <!-- Acil Konum Gönder -->
             <button class="btn" style="background:rgba(239,68,68,0.12); border-color:rgba(239,68,68,0.3); color:#ef4444;" onclick="sendLocation()">
                 <div class="btn-content">
                     <i class="fa-solid fa-location-dot"></i>
@@ -749,9 +704,15 @@
             </a>
 
             <!-- Sayfayı Paylaş -->
-            
+            <button class="btn btn-share" onclick="shareSite()">
+                <div class="btn-content">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Bu Sayfayı Paylaş</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
 
-            <!-- Rastgele Motor Bilgisi (YENİ) -->
+            <!-- Rastgele Motor Bilgisi -->
             <button class="btn btn-troll" onclick="showRandomFact()">
                 <div class="btn-content">
                     <i class="fa-solid fa-lightbulb"></i>
@@ -760,7 +721,7 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
 
-            <!-- Motoru Çalıştır (YENİ) -->
+            <!-- Motoru Çalıştır -->
             <button class="btn btn-start" onclick="startEngine()">
                 <div class="btn-content">
                     <i class="fa-solid fa-play"></i>
@@ -778,7 +739,7 @@
                 <i class="fa-solid fa-star"></i>
             </button>
 
-            <!-- Ses Efektleri Menüsü (YENİ) -->
+            <!-- Ses Efektleri Menüsü -->
             <button class="btn btn-sound" onclick="showSoundMenu()">
                 <div class="btn-content">
                     <i class="fa-solid fa-music"></i>
@@ -837,7 +798,7 @@
         </div>
     </div>
 
-    <!-- Ses Efektleri Menüsü (YENİ) -->
+    <!-- Ses Efektleri Menüsü -->
     <div class="modal-overlay" id="soundMenuModal">
         <div class="modal-card" role="dialog" aria-labelledby="soundMenuTitle">
             <h3 id="soundMenuTitle" style="margin-bottom:12px;">🔊 Ses Efektleri</h3>
@@ -875,7 +836,6 @@
         }
 
         let toastTimer;
-
         function showToast(msg, ms = 2200) {
             const t = document.getElementById('toast');
             t.textContent = msg;
@@ -926,9 +886,7 @@
             document.getElementById('clockDisplay').textContent = `${h}:${m}:${s}`;
 
             const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-            const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım',
-                'Aralık'
-            ];
+            const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
             const dayName = days[now.getDay()];
             const day = now.getDate();
             const month = months[now.getMonth()];
@@ -993,8 +951,7 @@
             const recent = notes.slice(-5).reverse();
             recent.forEach(n => {
                 const p = document.createElement('p');
-                p.innerHTML =
-                    `<span>${n.text}</span><span class="note-time">${n.time}</span>`;
+                p.innerHTML = `<span>${n.text}</span><span class="note-time">${n.time}</span>`;
                 list.appendChild(p);
             });
         }
@@ -1004,7 +961,7 @@
             const now = new Date();
             const time = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
             notes.push({ text, time });
-            if (notes.length > 50) notes.shift(); // max 50 not
+            if (notes.length > 50) notes.shift();
             localStorage.setItem('motorNotes', JSON.stringify(notes));
             loadNotes();
         }
@@ -1029,7 +986,6 @@
             document.getElementById(id).classList.remove('active');
         }
 
-        // Dışarı tıklayınca kapat
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', function(e) {
                 if (e.target === this) {
@@ -1042,7 +998,6 @@
            PARK PUANLAMA
            =================================================== */
         let currentRating = 0;
-
         function rate(stars) {
             currentRating = stars;
             const allStars = document.querySelectorAll('.star-rating i');
@@ -1091,110 +1046,89 @@
         }
 
         /* ===================================================
-           SAYFAYI PAYLAŞ
+           SAYFAYI PAYLAŞ (Geliştirilmiş & Güvenli Fallback)
            =================================================== */
         async function shareSite() {
-    vibrate([15]);
-    const shareData = {
-        title: 'Honda PCX 125 — Motora Yaklaştın!',
-        text: 'Bu motorun sahibine QR koddan ulaşabilirsin 🛵',
-        url: window.location.href
-    };
+            vibrate([15]);
+            const shareData = {
+                title: 'Honda PCX 125 — Motora Yaklaştın!',
+                text: 'Bu motorun sahibine QR koddan ulaşabilirsin 🛵',
+                url: window.location.href
+            };
 
-    // 1. AŞAMA: Mobil/Modern Tarayıcı Paylaşım Desteği (HTTPS Şartı)
-    if (navigator.share) {
-        try {
-            await navigator.share(shareData);
-            return; // İşlem başarılıysa fonksiyondan çık
-        } catch (e) {
-            if (e.name !== 'AbortError') console.error(e);
-            // Kullanıcı paylaşımı kendi iptal ettiyse kopyalamaya geçme
-            if (e.name === 'AbortError') return;
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    return;
+                } catch (e) {
+                    if (e.name === 'AbortError') return;
+                }
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    showToast('🔗 Sayfa linki kopyalandı!');
+                    return;
+                } catch (e) {}
+            }
+
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = window.location.href;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                document.execCommand('copy');
+                textArea.remove();
+                showToast('🔗 Sayfa linki kopyalandı!');
+            } catch (err) {
+                showToast('Paylaşım bu tarayıcıda desteklenmiyor 😅');
+            }
         }
-    }
-
-    // 2. AŞAMA: Modern Pano API ile Kopyalama (Masaüstü + HTTPS Şartı)
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        try {
-            await navigator.clipboard.writeText(window.location.href);
-            showToast('🔗 Sayfa linki kopyalandı!');
-            return;
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    // 3. AŞAMA: file:// veya HTTP Protokolleri İçin Eski Usul Kesin Çözüm (Fallback)
-    try {
-        const textArea = document.createElement("textarea");
-        textArea.value = window.location.href;
-        textArea.style.position = "fixed"; // Sayfa düzenini bozmaması için
-        textArea.style.left = "-999999px";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        document.execCommand('copy'); // Eski ama her ortamda çalışan kopyalama komutu
-        textArea.remove();
-        showToast('🔗 Sayfa linki kopyalandı!');
-    } catch (err) {
-        showToast('Paylaşım bu tarayıcıda desteklenmiyor 😅');
-    }
-}
-Küçük Bir İpucu: copyPhone() Fonksiyonu
-Aynı HTTPS/Güvenlik kısıtlaması sayfanın en altındaki "Numarayı Kopyala" butonu için de geçerlidir. Projeyi bir sunucuya (GitHub Pages, Netlify vb.) HTTPS üzerinden yüklemediğiniz sürece o buton da yerelde çalışmayacaktır. Onu da yerel testlere uyumlu hale getirmek için copyPhone fonksiyonunuzu şu şekilde güncelleyebilirsiniz:
-
-JavaScript
-/* ===================================================
-   NUMARA KOPYALA (Yerel Test Uyumlu)
-   =================================================== */
-function copyPhone() {
-    const phoneNumber = '+90 505 176 09 29';
-    vibrate([15]);
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(phoneNumber)
-            .then(() => showToast('📋 Numara kopyalandı!'))
-            .catch(() => fallbackCopyPhone(phoneNumber));
-    } else {
-        fallbackCopyPhone(phoneNumber);
-    }
-}
-
-function fallbackCopyPhone(text) {
-    try {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        document.execCommand('copy');
-        textArea.remove();
-        showToast('📋 Numara kopyalandı!');
-    } catch (e) {
-        showToast('Kopyalanamadı, elle yazman gerekecek 😅');
-    }
-}
 
         /* ===================================================
            NUMARA KOPYALA
            =================================================== */
         function copyPhone() {
-            navigator.clipboard.writeText('+90 505 176 09 29')
-                .then(() => { showToast('📋 Numara kopyalandı!');
-                    vibrate([15]); })
-                .catch(() => showToast('Kopyalanamadı, elle yazman gerekecek 😅'));
+            const phoneNumber = '+90 505 176 09 29';
+            vibrate([15]);
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(phoneNumber)
+                    .then(() => showToast('📋 Numara kopyalandı!'))
+                    .catch(() => fallbackCopyPhone(phoneNumber));
+            } else {
+                fallbackCopyPhone(phoneNumber);
+            }
+        }
+
+        function fallbackCopyPhone(text) {
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                document.execCommand('copy');
+                textArea.remove();
+                showToast('📋 Numara kopyalandı!');
+            } catch (e) {
+                showToast('Kopyalanamadı, elle yazman gerekecek 😅');
+            }
         }
 
         /* ===================================================
-           ACİL KONUM GÖNDER (YENİ)
+           ACİL KONUM GÖNDER
            =================================================== */
         function sendLocation() {
             if (!navigator.geolocation) {
-                showToast('📍 Tarayıcın konum desteği yok. WhatsApp\'tan manuel gönder.');
-                window.open(`https://wa.me/${OWNER_PHONE}?text=Acil!%20Konumumu%20gönderemiyorum,%20lütfen%20arayın.`,
-                '_blank');
+                showToast('📍 Tarayıcında konum desteği yok. WhatsApp\'tan manuel gönder.');
+                window.open(`https://wa.me/${OWNER_PHONE}?text=Acil!%20Konumumu%20gönderemiyorum,%20lütfen%20arayın.`, '_blank');
                 return;
             }
             showToast('📍 Konum alınıyor...');
@@ -1209,29 +1143,28 @@ function fallbackCopyPhone(text) {
                 },
                 (err) => {
                     showToast('📍 Konum alınamadı. WhatsApp\'tan manuel gönder.');
-                    window.open(`https://wa.me/${OWNER_PHONE}?text=Acil!%20Konumumu%20paylaşamıyorum,%20arayın.`,
-                    '_blank');
+                    window.open(`https://wa.me/${OWNER_PHONE}?text=Acil!%20Konumumu%20paylaşamıyorum,%20arayın.`, '_blank');
                 }, { enableHighAccuracy: true, timeout: 8000 }
             );
         }
 
         /* ===================================================
-           RASTGELE MOTOR BİLGİSİ (YENİ)
+           RASTGELE MOTOR BİLGİSİ
            =================================================== */
         const motorFacts = [
             "🏍️ Honda PCX 125, 2023 modelde 12.4 bg gücünde!",
-            "⛽ 100 km'de ortalama 2.2 litre yakıyor.",
-            "🛵 Sele altında 28 litre depo hacmi var.",
+            "Eşsiz eSP+ motor teknolojisiyle düşük yakıt tüketimi sunar.",
+            "Sele altında tam 30.4 litrelik devasa bir bagaj hacmi sunar.",
             "⚡ 2023 PCX, start-stop sistemi ile yakıt tasarrufu sağlar.",
-            "🔧 V-matic şanzıman, sürüşü pürüzsüzleştirir.",
+            "Ayrıca akıllı anahtar (Smart Key) sistemiyle anahtarsız çalışır.",
             "💨 Rüzgarlık sayesinde yüksek hızda konfor artar.",
-            "🎨 2023 modelde 4 farklı renk seçeneği var.",
+            "HSTC (Tork Kontrolü) ile kaygan yollarda arka tekerin kaymasını önler.",
             "🏁 0-100 km/s hızlanması yaklaşık 16 saniye.",
             "🔋 Akü 12V-5Ah, start-stop için optimize edilmiş.",
-            "🛞 Ön ve arka 14 inç jantlar, yol tutuşu iyileştirir.",
+            "🛞 Ön ve arka jant yapısı, mükemmel şehir içi kıvraklık verir.",
             "💡 Tamamen LED aydınlatma, gece görüşü mükemmel.",
-            "📱 Akıllı anahtar sistemi ile uzaktan kumanda.",
-            "🧰 2 yıl / 20.000 km garantili.",
+            "Ön panelde Type-C şarj soketi yer alır.",
+            "Arka amortisör strokları konfor için artırılmıştır.",
             "🇯🇵 Honda, Japonya'dan dünyaya yayılan efsane.",
             "🤫 Susturucu Euro5 normlarına uygun, sessiz ve çevreci."
         ];
@@ -1243,10 +1176,9 @@ function fallbackCopyPhone(text) {
         }
 
         /* ===================================================
-           MOTORU ÇALIŞTIR (SES + TİTREŞİM + IŞIK) (YENİ)
+           MOTORU ÇALIŞTIR (SES + TİTREŞİM)
            =================================================== */
         let engineRunning = false;
-
         function startEngine() {
             if (engineRunning) {
                 showToast('🏍️ Motor zaten çalışıyor!');
@@ -1256,7 +1188,6 @@ function fallbackCopyPhone(text) {
             vibrate([50, 30, 50, 30, 100]);
             showToast('🏍️ Brum brum! Motor çalıştı!', 1500);
 
-            // Ses
             try {
                 const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
                 const osc = audioCtx.createOscillator();
@@ -1265,19 +1196,15 @@ function fallbackCopyPhone(text) {
                 osc.type = 'sawtooth';
                 const now = audioCtx.currentTime;
 
-                // Rölanti
                 osc.frequency.setValueAtTime(40, now);
                 gain.gain.setValueAtTime(0.15, now);
 
-                // Gaz açma
                 osc.frequency.exponentialRampToValueAtTime(220, now + 0.3);
                 gain.gain.exponentialRampToValueAtTime(0.35, now + 0.3);
 
-                // Vututu
                 osc.frequency.exponentialRampToValueAtTime(400, now + 0.7);
                 gain.gain.exponentialRampToValueAtTime(0.5, now + 0.7);
 
-                // Rölantiye dön
                 osc.frequency.exponentialRampToValueAtTime(60, now + 1.2);
                 gain.gain.exponentialRampToValueAtTime(0.1, now + 1.2);
 
@@ -1286,12 +1213,9 @@ function fallbackCopyPhone(text) {
                 osc.start(now);
                 osc.stop(now + 1.8);
 
-                // Işık efekti (flaş)
                 if (navigator.vibrate) navigator.vibrate([30, 20, 30, 20, 30]);
 
-                setTimeout(() => {
-                    engineRunning = false;
-                }, 2000);
+                setTimeout(() => { engineRunning = false; }, 2000);
             } catch (e) {
                 showToast('🔊 Brum brum! (Ses çalmadı ama hissettin!)');
                 setTimeout(() => { engineRunning = false; }, 1500);
@@ -1299,7 +1223,7 @@ function fallbackCopyPhone(text) {
         }
 
         /* ===================================================
-           SES EFEKTLERİ MENÜSÜ (YENİ)
+           SES EFEKTLERİ MENÜSÜ
            =================================================== */
         function showSoundMenu() {
             openModal('soundMenuModal');
@@ -1367,7 +1291,7 @@ function fallbackCopyPhone(text) {
         }
 
         /* ===================================================
-           GİZLİ TURBO (RİCKROLL)
+           GİZLİ TURBO (RICKROLL)
            =================================================== */
         function gizliOzellik() {
             vibrate([10, 20, 10]);
@@ -1376,7 +1300,7 @@ function fallbackCopyPhone(text) {
         }
 
         /* ===================================================
-           KONFETİ (5 yıldız)
+           KONFETİ (5 Yıldız Efekti)
            =================================================== */
         function confetti() {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1409,25 +1333,12 @@ function fallbackCopyPhone(text) {
         }
 
         /* ===================================================
-           PWA / SERVICE WORKER (Basit)
-           =================================================== */
-        if ('serviceWorker' in navigator) {
-            // Basit bir service worker için sadece kayıt denemesi
-            // (Bu proje için statik olduğundan gerçek bir SW dosyası yok,
-            //  ama ileride eklenebilir)
-            console.log('PWA desteği hazır.');
-        }
-
-        /* ===================================================
            SAYFA YÜKLENDİĞİNDE
            =================================================== */
         document.addEventListener('DOMContentLoaded', function() {
-            // Yakıt göstergesini yenile
             updateFuel();
-            // Notları yükle
             loadNotes();
         });
     </script>
-
 </body>
 </html>
