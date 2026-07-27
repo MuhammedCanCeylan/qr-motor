@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motoruma Yaklaştın!</title>
+    <style>
+        /* Genel sayfa tasarımı - Koyu Tema */
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* En üstteki yuvarlak resim */
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid #ff4757;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        p { color: #aaa; margin-bottom: 30px; font-size: 0.95rem; }
+
+        /* Klasik Buton Tasarımı */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #2f3542;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            border: 1px solid #57606f;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .btn:hover { 
+            background: #ff4757; 
+            border-color: #ff4757; 
+        }
+
+        /* Turuncu Troll Butonlar */
+        .btn-troll { 
+            background: #ffa502; 
+            color: #111; 
+            border: none; 
+        }
+        .btn-troll:hover { background: #eccc68; }
+        
+        /* Acil Durum Butonu için Yanıp Sönme Animasyonu */
+        .btn-emergency {
+            animation: pulse 2s infinite;
+            border-color: #ff4757;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 71, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- İstersen kendi resmini, istersen motorunun resmini koy (Linkini src içine ekle) -->
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400" alt="Motor" class="profile-pic">
+        
+        <h2>⚠️ Motoruma Yaklaştın!</h2>
+        <p>Madem QR kodu okutacak kadar yakınına geldin, umarım grenajı çizmemişsindir.</p>
+
+        <!-- Gerçek İletişim Bilgileri -->
+        <!-- Telefon araması için href içine tel:+905... WhatsApp için wa.me/905... yazabilirsin -->
+        <a href="tel:+905000000000" class="btn btn-emergency">🚨 Motorla İlgili Acil Durum</a>
+        <a href="https://instagram.com/seninkullaniciadin" class="btn" target="_blank">📸 Instagram'dan Takip Et</a>
+        
+        <!-- JavaScript ile çalışan Troll Butonlar -->
+        <button class="btn btn-troll" onclick="parkTroll()">🅿️ Park Puanı Ver</button>
+        <button class="btn btn-troll" onclick="gizliOzellik()">🚀 Gizli Özellikleri Aç</button>
+    </div>
+
+    <script>
+        // Troll Buton 1: Park Puanı
+        function parkTroll() {
+            alert("Zaten kusursuz park ettim, neyini puanlıyorsun? 😎");
+        }
+
+        // Troll Buton 2: Fake Yönlendirme (Rickroll)
+        function gizliOzellik() {
+            alert("Gizli mod aktifleştiriliyor... Sıkı tutun!");
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
+        }
+    </script>
+</body>
+</html>
