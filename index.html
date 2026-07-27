@@ -2,113 +2,1432 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motoruma Yaklaştın!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Honda PCX 125 sahibine QR koddan ulaş: acil iletişim, not bırakma ve eğlenceli özellikler.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%8D%EF%B8%8F%3C/text%3E%3C/svg%3E">
+    <title>⚠️ Motora Çok Yaklaştın!</title>
+    <!-- FontAwesome İkonlar & Google Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+
     <style>
-        /* Genel sayfa tasarımı - Koyu Tema */
+        /* ===== CSS DEĞİŞKENLERİ ===== */
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-red: #ff3366;
+            --accent-yellow: #ffbe0b;
+            --accent-blue: #00f2fe;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-main: #ffffff;
+            --text-sub: #a0a5b5;
+            --shadow-color: rgba(0, 0, 0, 0.6);
+            --gradient-start: #0b0c10;
+            --gradient-end: #1a1e2a;
+            --toast-bg: #16181e;
+        }
+
+        /* Açık tema */
+        [data-theme="light"] {
+            --bg-color: #f0f2f5;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --text-main: #1a1a1a;
+            --text-sub: #4a4a5a;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --gradient-start: #e8ecf1;
+            --gradient-end: #d5dbe3;
+            --toast-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        textarea,
+        input,
+        .copy-phone,
+        .theme-toggle {
+            user-select: text;
+        }
+
         body {
-            background-color: #111;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 51, 102, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.12) 0%, transparent 40%);
+            background-attachment: fixed;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 440px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 28px 20px;
+            box-shadow: 0 20px 50px var(--shadow-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* ===== TEMA DEĞİŞTİRME BUTONU ===== */
+        .theme-toggle {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-main);
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 18px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-red);
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.5);
+        }
+
+        .badge-live {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: #10b981;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 12px;
+            border: 2px solid var(--bg-color);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #fff 30%, var(--text-sub));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background 0.3s;
+        }
+
+        .subtitle {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        /* ===== YAKIT GÖSTERGESİ ===== */
+        .fuel-container {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 8px 14px;
+            margin: 10px auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .fuel-label {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .fuel-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .fuel-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: width 0.6s ease;
+        }
+
+        /* ===== SAAT & TARİH ===== */
+        .datetime {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .datetime span {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 14px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ===== STATUS KARTI ===== */
+        .status-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.8rem;
+        }
+
+        .status-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .status-item span {
+            color: var(--text-sub);
+            font-size: 0.75rem;
+        }
+
+        .status-item strong {
+            color: var(--accent-blue);
+        }
+
+        /* ===== ZİYARET İSTATİSTİKLERİ ===== */
+        .visit-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.72rem;
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .visit-stats strong {
+            color: var(--accent-yellow);
+        }
+
+        /* ===== NOTLAR LİSTESİ ===== */
+        .notes-history {
+            margin: 14px 0 10px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            max-height: 110px;
+            overflow-y: auto;
+        }
+        .notes-history p {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .notes-history .note-time {
+            color: var(--text-sub);
+            opacity: 0.6;
+            font-size: 0.6rem;
+        }
+
+        /* ===== BUTONLAR ===== */
+        .btn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Özel Buton Stilleri */
+        .btn-emergency {
+            background: linear-gradient(135deg, #ff3366, #ff0055);
+            border: none;
+            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+        }
+        .btn-insta {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            border: none;
+        }
+        .btn-note {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            border: none;
+        }
+        .btn-share {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        .btn-troll {
+            background: rgba(255, 190, 11, 0.1);
+            border-color: rgba(255, 190, 11, 0.3);
+            color: var(--accent-yellow);
+        }
+        .btn-sound {
+            background: rgba(0, 242, 254, 0.1);
+            border-color: rgba(0, 242, 254, 0.3);
+            color: var(--accent-blue);
+        }
+        .btn-start {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: var(--accent-green);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            font-size: 2rem;
+            color: #444;
+        }
+        .star-rating i {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating i.active {
+            color: var(--accent-yellow);
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .note-textarea {
+            width: 100%;
+            min-height: 90px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+        .char-count {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 0.5px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 30px 20px;
-            text-align: center;
+            gap: 6px;
         }
-        
-        .container {
-            max-width: 400px;
-            width: 100%;
-        }
-
-        /* En üstteki yuvarlak resim */
-        .profile-pic {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid #ff4757;
-            margin-bottom: 20px;
-            object-fit: cover;
-        }
-
-        p { color: #aaa; margin-bottom: 30px; font-size: 0.95rem; }
-
-        /* Klasik Buton Tasarımı */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: #2f3542;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1rem;
-            border: 1px solid #57606f;
-            box-sizing: border-box;
+        .copy-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            font-family: inherit;
+            font-size: 0.75rem;
             cursor: pointer;
-            transition: 0.2s;
-        }
-        
-        .btn:hover { 
-            background: #ff4757; 
-            border-color: #ff4757; 
+            text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
-        /* Turuncu Troll Butonlar */
-        .btn-troll { 
-            background: #ffa502; 
-            color: #111; 
-            border: none; 
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--toast-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1200;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            color: var(--text-main);
         }
-        .btn-troll:hover { background: #eccc68; }
-        
-        /* Acil Durum Butonu için Yanıp Sönme Animasyonu */
-        .btn-emergency {
-            animation: pulse 2s infinite;
-            border-color: #ff4757;
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
-            70% { box-shadow: 0 0 0 12px rgba(255, 71, 87, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+
+        /* ===== ANİMASYONLAR ===== */
+        @media (prefers-reduced-motion: no-preference) {
+            .pulse-dot {
+                animation: blink 1.2s infinite;
+            }
+            .btn-emergency {
+                animation: pulse-border 2s infinite;
+            }
+            .avatar-container,
+            h1,
+            .subtitle,
+            .status-box,
+            .visit-stats,
+            .fuel-container,
+            .datetime,
+            .btn-list .btn,
+            footer {
+                opacity: 0;
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            .avatar-container {
+                animation-delay: .05s;
+            }
+            h1 {
+                animation-delay: .10s;
+            }
+            .subtitle {
+                animation-delay: .15s;
+            }
+            .datetime {
+                animation-delay: .20s;
+            }
+            .fuel-container {
+                animation-delay: .25s;
+            }
+            .status-box {
+                animation-delay: .30s;
+            }
+            .visit-stats {
+                animation-delay: .35s;
+            }
+            .btn-list .btn:nth-child(1) {
+                animation-delay: .40s;
+            }
+            .btn-list .btn:nth-child(2) {
+                animation-delay: .45s;
+            }
+            .btn-list .btn:nth-child(3) {
+                animation-delay: .50s;
+            }
+            .btn-list .btn:nth-child(4) {
+                animation-delay: .55s;
+            }
+            .btn-list .btn:nth-child(5) {
+                animation-delay: .60s;
+            }
+            .btn-list .btn:nth-child(6) {
+                animation-delay: .65s;
+            }
+            .btn-list .btn:nth-child(7) {
+                animation-delay: .70s;
+            }
+            .btn-list .btn:nth-child(8) {
+                animation-delay: .75s;
+            }
+            .btn-list .btn:nth-child(9) {
+                animation-delay: .80s;
+            }
+            footer {
+                animation-delay: .95s;
+            }
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 14px rgba(255, 51, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 51, 102, 0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SCROLL BAR ===== */
+        .notes-history::-webkit-scrollbar {
+            width: 4px;
+        }
+        .notes-history::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .notes-history::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- İstersen kendi resmini, istersen motorunun resmini koy (Linkini src içine ekle) -->
-        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400" alt="Motor" class="profile-pic">
-        
-        <h2>⚠️ Motoruma Yaklaştın!</h2>
-        <p>Madem QR kodu okutacak kadar yakınına geldin, umarım grenajı çizmemişsindir.</p>
 
-        <!-- Gerçek İletişim Bilgileri -->
-        <!-- Telefon araması için href içine tel:+905... WhatsApp için wa.me/905... yazabilirsin -->
-        <a href="tel:+905000000000" class="btn btn-emergency">🚨 Motorla İlgili Acil Durum</a>
-        <a href="https://instagram.com/seninkullaniciadin" class="btn" target="_blank">📸 Instagram'dan Takip Et</a>
-        
-        <!-- JavaScript ile çalışan Troll Butonlar -->
-        <button class="btn btn-troll" onclick="parkTroll()">🅿️ Park Puanı Ver</button>
-        <button class="btn btn-troll" onclick="gizliOzellik()">🚀 Gizli Özellikleri Aç</button>
+    <div class="wrapper" id="appWrapper">
+        <!-- Tema Değiştir -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Temayı değiştir">
+            <i class="fa-regular fa-moon"></i> <span id="themeLabel">Koyu</span>
+        </button>
+
+        <!-- Profil -->
+        <div class="avatar-container">
+            <img src="motor.jpg" onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400'" alt="Honda PCX 125" class="avatar-img">
+            <div class="badge-live">
+                <div class="pulse-dot"></div> CANLI
+            </div>
+        </div>
+
+        <h1>⚠️ MOTORA YAKLAŞTIN</h1>
+        <p class="subtitle" style="color: var(--accent-yellow); font-weight: 600; margin-bottom: 2px;">🛵 Honda PCX 125 (2023)</p>
+        <p class="subtitle" style="margin-bottom: 10px;">Bunu okuyorsan muhtemelen PCX'e çok yakınsın. Çizme yeter, gerisi mühim değil! 😄</p>
+
+        <!-- Saat & Tarih -->
+        <div class="datetime">
+            <span id="clockDisplay">--:--:--</span>
+            <span id="dateDisplay">-- --- ----</span>
+        </div>
+
+        <!-- Yakıt Göstergesi -->
+        <div class="fuel-container">
+            <div class="fuel-label"><i class="fa-solid fa-gas-pump"></i> Yakıt</div>
+            <div class="fuel-bar">
+                <div class="fuel-fill" id="fuelFill" style="width:0%;"></div>
+            </div>
+            <span id="fuelPercent" style="font-weight:700; font-size:0.9rem; min-width:40px;">0%</span>
+        </div>
+
+        <!-- Durum Özeti -->
+        <div class="status-box">
+            <div class="status-item">
+                <span>Park Durumu</span>
+                <strong>🟢 Güvende</strong>
+            </div>
+            <div class="status-item">
+                <span>Model</span>
+                <strong>PCX 125 🚀</strong>
+            </div>
+            <div class="status-item">
+                <span>Sahibi</span>
+                <strong>Muhammed ☕</strong>
+            </div>
+        </div>
+
+        <!-- Ziyaret İstatistikleri -->
+        <div class="visit-stats">
+            <span>📱 Bu cihazdan <strong id="visitCount">0</strong>. ziyaret</span>
+            <span>📅 Bugün <strong id="todayCount">0</strong> kez</span>
+        </div>
+
+        <!-- Notlar Geçmişi -->
+        <div id="notesHistoryContainer" style="display:none;">
+            <div class="notes-history" id="notesHistory"></div>
+            <button class="copy-phone" onclick="clearNotes()" style="font-size:0.7rem; margin-top:4px;">
+                <i class="fa-regular fa-trash-can"></i> Tümünü Temizle
+            </button>
+        </div>
+
+        <!-- Buton Listesi -->
+        <div class="btn-list">
+            <!-- Acil WhatsApp -->
+            <a href="https://wa.me/905051760929?text=Merhaba,%20Honda%20PCX%20motorunuzla%20ilgili%20ulaşıyorum:" target="_blank" class="btn btn-emergency">
+                <div class="btn-content">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp'tan Ulaş (Acil)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <!-- Doğrudan Ara -->
+            <a href="tel:+905051760929" class="btn" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #10b981;">
+                <div class="btn-content">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Doğrudan Ara</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <!-- Not Bırak -->
+            <button class="btn btn-note" onclick="openModal('noteModal')" aria-haspopup="dialog">
+                <div class="btn-content">
+                    <i class="fa-solid fa-note-sticky"></i>
+                    <span>Sahibine Not Bırak</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Acil Konum Gönder (YENİ) -->
+            <button class="btn" style="background:rgba(239,68,68,0.12); border-color:rgba(239,68,68,0.3); color:#ef4444;" onclick="sendLocation()">
+                <div class="btn-content">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Acil Konum Gönder</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/ceylancanmuhammed" target="_blank" class="btn btn-insta">
+                <div class="btn-content">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>@ceylancanmuhammed</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <!-- Sayfayı Paylaş -->
+            
+
+            <!-- Rastgele Motor Bilgisi (YENİ) -->
+            <button class="btn btn-troll" onclick="showRandomFact()">
+                <div class="btn-content">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <span>Rastgele Motor Bilgisi</span>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- Motoru Çalıştır (YENİ) -->
+            <button class="btn btn-start" onclick="startEngine()">
+                <div class="btn-content">
+                    <i class="fa-solid fa-play"></i>
+                    <span>🏍️ Motoru Çalıştır</span>
+                </div>
+                <i class="fa-solid fa-bolt"></i>
+            </button>
+
+            <!-- Park Puanlama -->
+            <button class="btn btn-troll" onclick="openModal('parkModal')">
+                <div class="btn-content">
+                    <i class="fa-solid fa-square-parking"></i>
+                    <span>Parkımı Puanla</span>
+                </div>
+                <i class="fa-solid fa-star"></i>
+            </button>
+
+            <!-- Ses Efektleri Menüsü (YENİ) -->
+            <button class="btn btn-sound" onclick="showSoundMenu()">
+                <div class="btn-content">
+                    <i class="fa-solid fa-music"></i>
+                    <span>Ses Efektleri</span>
+                </div>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <!-- Gizli Turbo -->
+            <button class="btn" onclick="gizliOzellik()">
+                <div class="btn-content">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span>Gizli Turbo Modu</span>
+                </div>
+                <i class="fa-solid fa-lock"></i>
+            </button>
+        </div>
+
+        <footer>
+            ÖMÜR BOYU KALICI QR KOD SİSTEMİ ♾️
+            <button class="copy-phone" onclick="copyPhone()">
+                <i class="fa-solid fa-copy"></i> Numarayı Kopyala
+            </button>
+        </footer>
     </div>
 
+    <!-- ===== MODALLAR ===== -->
+    <!-- Park Puanlama -->
+    <div class="modal-overlay" id="parkModal">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="parkModalTitle">
+            <h3 id="parkModalTitle" style="margin-bottom:10px;">Park Etme Becerim? 🅿️</h3>
+            <p style="font-size:0.85rem; color:var(--text-sub);">Dürüst ol, nasıldı?</p>
+            <div class="star-rating">
+                <i class="fa-solid fa-star" onclick="rate(1)"></i>
+                <i class="fa-solid fa-star" onclick="rate(2)"></i>
+                <i class="fa-solid fa-star" onclick="rate(3)"></i>
+                <i class="fa-solid fa-star" onclick="rate(4)"></i>
+                <i class="fa-solid fa-star" onclick="rate(5)"></i>
+            </div>
+            <p id="ratingResult" style="font-size:0.9rem; font-weight:600; min-height:24px; color:var(--accent-yellow);"></p>
+            <button class="close-btn" onclick="closeModal('parkModal')">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Not Bırak -->
+    <div class="modal-overlay" id="noteModal">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="noteModalTitle">
+            <h3 id="noteModalTitle" style="margin-bottom:10px;">Sahibine Not Bırak ✍️</h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:14px;">Notun WhatsApp üzerinden doğrudan Muhammed'e gidecek.</p>
+            <textarea id="noteText" class="note-textarea" oninput="updateCharCount()" maxlength="300" placeholder="Örn: Motorun yolu kapatmış, biraz çekebilir misin? 🙂"></textarea>
+            <p id="noteCharCount" class="char-count">0 / 300</p>
+            <div class="modal-actions">
+                <button class="close-btn" style="background:linear-gradient(135deg, #8b5cf6, #6d28d9);" onclick="sendNote()">WhatsApp'tan Gönder</button>
+                <button class="close-btn" onclick="closeModal('noteModal')">Vazgeç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ses Efektleri Menüsü (YENİ) -->
+    <div class="modal-overlay" id="soundMenuModal">
+        <div class="modal-card" role="dialog" aria-labelledby="soundMenuTitle">
+            <h3 id="soundMenuTitle" style="margin-bottom:12px;">🔊 Ses Efektleri</h3>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+                <button class="btn btn-sound" onclick="playSoundEffect('exhaust')" style="justify-content:center;">
+                    <i class="fa-solid fa-bolt"></i> Egzoz Patlaması
+                </button>
+                <button class="btn btn-sound" onclick="playSoundEffect('horn')" style="justify-content:center;">
+                    <i class="fa-solid fa-bullhorn"></i> Korna
+                </button>
+                <button class="btn btn-sound" onclick="playSoundEffect('idle')" style="justify-content:center;">
+                    <i class="fa-solid fa-circle"></i> Rölanti
+                </button>
+                <button class="btn btn-sound" onclick="playSoundEffect('rev')" style="justify-content:center;">
+                    <i class="fa-solid fa-arrow-up"></i> Gaz Açma
+                </button>
+            </div>
+            <button class="close-btn" style="margin-top:14px;" onclick="closeModal('soundMenuModal')">Kapat</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
     <script>
-        // Troll Buton 1: Park Puanı
-        function parkTroll() {
-            alert("Zaten kusursuz park ettim, neyini puanlıyorsun? 😎");
+        /* ===================================================
+           KONFİGÜRASYON
+           =================================================== */
+        const OWNER_PHONE = '905051760929';
+
+        /* ===================================================
+           YARDIMCI FONKSİYONLAR
+           =================================================== */
+        function vibrate(pattern) {
+            if (navigator.vibrate) navigator.vibrate(pattern);
         }
 
-        // Troll Buton 2: Fake Yönlendirme (Rickroll)
-        function gizliOzellik() {
-            alert("Gizli mod aktifleştiriliyor... Sıkı tutun!");
-            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
+        let toastTimer;
+
+        function showToast(msg, ms = 2200) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), ms);
         }
+
+        /* ===================================================
+           TEMA DEĞİŞTİRME
+           =================================================== */
+        (function initTheme() {
+            const stored = localStorage.getItem('motorTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', stored);
+            updateThemeUI(stored);
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        })();
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('motorTheme', next);
+            updateThemeUI(next);
+            showToast(next === 'dark' ? '🌙 Koyu tema' : '☀️ Açık tema');
+        }
+
+        function updateThemeUI(theme) {
+            const label = document.getElementById('themeLabel');
+            const icon = document.querySelector('#themeToggle i');
+            if (theme === 'dark') {
+                label.textContent = 'Koyu';
+                icon.className = 'fa-regular fa-moon';
+            } else {
+                label.textContent = 'Açık';
+                icon.className = 'fa-regular fa-sun';
+            }
+        }
+
+        /* ===================================================
+           SAAT & TARİH
+           =================================================== */
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clockDisplay').textContent = `${h}:${m}:${s}`;
+
+            const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+            const months = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım',
+                'Aralık'
+            ];
+            const dayName = days[now.getDay()];
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            document.getElementById('dateDisplay').textContent = `${dayName} ${day} ${month} ${year}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        /* ===================================================
+           YAKIT GÖSTERGESİ (Rastgele)
+           =================================================== */
+        function updateFuel() {
+            const percent = Math.floor(Math.random() * 41) + 30; // %30 – %70 arası
+            document.getElementById('fuelFill').style.width = percent + '%';
+            document.getElementById('fuelPercent').textContent = percent + '%';
+
+            const fill = document.getElementById('fuelFill');
+            if (percent > 60) fill.style.background = 'linear-gradient(90deg, #10b981, #34d399)';
+            else if (percent > 30) fill.style.background = 'linear-gradient(90deg, #f59e0b, #fbbf24)';
+            else fill.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+        }
+        updateFuel();
+
+        /* ===================================================
+           ZİYARET SAYACI (localStorage)
+           =================================================== */
+        function updateVisitCounter() {
+            let total = parseInt(localStorage.getItem('motorQrTotalVisits') || '0', 10);
+            total += 1;
+            localStorage.setItem('motorQrTotalVisits', String(total));
+
+            const today = new Date().toDateString();
+            let todayCount = parseInt(localStorage.getItem('motorQrTodayVisits') || '0', 10);
+            const lastDate = localStorage.getItem('motorQrLastDate');
+            if (lastDate !== today) {
+                todayCount = 1;
+                localStorage.setItem('motorQrLastDate', today);
+            } else {
+                todayCount += 1;
+            }
+            localStorage.setItem('motorQrTodayVisits', String(todayCount));
+
+            document.getElementById('visitCount').textContent = total;
+            document.getElementById('todayCount').textContent = todayCount;
+        }
+        updateVisitCounter();
+
+        /* ===================================================
+           NOTLAR GEÇMİŞİ (localStorage)
+           =================================================== */
+        function loadNotes() {
+            const notes = JSON.parse(localStorage.getItem('motorNotes') || '[]');
+            const container = document.getElementById('notesHistoryContainer');
+            const list = document.getElementById('notesHistory');
+            list.innerHTML = '';
+            if (notes.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            container.style.display = 'block';
+            const recent = notes.slice(-5).reverse();
+            recent.forEach(n => {
+                const p = document.createElement('p');
+                p.innerHTML =
+                    `<span>${n.text}</span><span class="note-time">${n.time}</span>`;
+                list.appendChild(p);
+            });
+        }
+
+        function saveNote(text) {
+            const notes = JSON.parse(localStorage.getItem('motorNotes') || '[]');
+            const now = new Date();
+            const time = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+            notes.push({ text, time });
+            if (notes.length > 50) notes.shift(); // max 50 not
+            localStorage.setItem('motorNotes', JSON.stringify(notes));
+            loadNotes();
+        }
+
+        function clearNotes() {
+            if (confirm('Tüm notları silmek istediğine emin misin?')) {
+                localStorage.removeItem('motorNotes');
+                loadNotes();
+                showToast('🗑️ Notlar temizlendi.');
+            }
+        }
+        loadNotes();
+
+        /* ===================================================
+           MODAL İŞLEMLERİ
+           =================================================== */
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Dışarı tıklayınca kapat
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+
+        /* ===================================================
+           PARK PUANLAMA
+           =================================================== */
+        let currentRating = 0;
+
+        function rate(stars) {
+            currentRating = stars;
+            const allStars = document.querySelectorAll('.star-rating i');
+            const resultText = document.getElementById('ratingResult');
+
+            allStars.forEach((star, idx) => {
+                star.classList.toggle('active', idx < stars);
+            });
+
+            if (stars === 5) {
+                resultText.innerText = "Eyvallah kralsın! 😎 Kaskın dert görmesin.";
+                vibrate([15, 40, 15, 40, 15]);
+                confetti();
+            } else if (stars >= 3) {
+                resultText.innerText = "Fena değil, idare eder! 👍";
+                vibrate([15]);
+            } else {
+                resultText.innerText = "Kıskanma birader, sen daha iyisini yap da görelim! 😜";
+                vibrate([10, 30, 10]);
+            }
+        }
+
+        /* ===================================================
+           NOT BIRAKMA
+           =================================================== */
+        function updateCharCount() {
+            const ta = document.getElementById('noteText');
+            document.getElementById('noteCharCount').textContent = ta.value.length + ' / 300';
+        }
+
+        function sendNote() {
+            const ta = document.getElementById('noteText');
+            const text = ta.value.trim();
+            if (!text) {
+                showToast('✍️ Önce bir şeyler yazmalısın...');
+                return;
+            }
+            const msg = encodeURIComponent('📝 QR koddan not: ' + text);
+            window.open(`https://wa.me/${OWNER_PHONE}?text=${msg}`, '_blank');
+            saveNote(text);
+            vibrate([20]);
+            closeModal('noteModal');
+            showToast("✅ Not WhatsApp'ta hazır, gönder yeter!");
+            ta.value = '';
+            updateCharCount();
+        }
+
+        /* ===================================================
+           SAYFAYI PAYLAŞ
+           =================================================== */
+        async function shareSite() {
+    vibrate([15]);
+    const shareData = {
+        title: 'Honda PCX 125 — Motora Yaklaştın!',
+        text: 'Bu motorun sahibine QR koddan ulaşabilirsin 🛵',
+        url: window.location.href
+    };
+
+    // 1. AŞAMA: Mobil/Modern Tarayıcı Paylaşım Desteği (HTTPS Şartı)
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+            return; // İşlem başarılıysa fonksiyondan çık
+        } catch (e) {
+            if (e.name !== 'AbortError') console.error(e);
+            // Kullanıcı paylaşımı kendi iptal ettiyse kopyalamaya geçme
+            if (e.name === 'AbortError') return;
+        }
+    }
+
+    // 2. AŞAMA: Modern Pano API ile Kopyalama (Masaüstü + HTTPS Şartı)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast('🔗 Sayfa linki kopyalandı!');
+            return;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    // 3. AŞAMA: file:// veya HTTP Protokolleri İçin Eski Usul Kesin Çözüm (Fallback)
+    try {
+        const textArea = document.createElement("textarea");
+        textArea.value = window.location.href;
+        textArea.style.position = "fixed"; // Sayfa düzenini bozmaması için
+        textArea.style.left = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy'); // Eski ama her ortamda çalışan kopyalama komutu
+        textArea.remove();
+        showToast('🔗 Sayfa linki kopyalandı!');
+    } catch (err) {
+        showToast('Paylaşım bu tarayıcıda desteklenmiyor 😅');
+    }
+}
+Küçük Bir İpucu: copyPhone() Fonksiyonu
+Aynı HTTPS/Güvenlik kısıtlaması sayfanın en altındaki "Numarayı Kopyala" butonu için de geçerlidir. Projeyi bir sunucuya (GitHub Pages, Netlify vb.) HTTPS üzerinden yüklemediğiniz sürece o buton da yerelde çalışmayacaktır. Onu da yerel testlere uyumlu hale getirmek için copyPhone fonksiyonunuzu şu şekilde güncelleyebilirsiniz:
+
+JavaScript
+/* ===================================================
+   NUMARA KOPYALA (Yerel Test Uyumlu)
+   =================================================== */
+function copyPhone() {
+    const phoneNumber = '+90 505 176 09 29';
+    vibrate([15]);
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(phoneNumber)
+            .then(() => showToast('📋 Numara kopyalandı!'))
+            .catch(() => fallbackCopyPhone(phoneNumber));
+    } else {
+        fallbackCopyPhone(phoneNumber);
+    }
+}
+
+function fallbackCopyPhone(text) {
+    try {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+        showToast('📋 Numara kopyalandı!');
+    } catch (e) {
+        showToast('Kopyalanamadı, elle yazman gerekecek 😅');
+    }
+}
+
+        /* ===================================================
+           NUMARA KOPYALA
+           =================================================== */
+        function copyPhone() {
+            navigator.clipboard.writeText('+90 505 176 09 29')
+                .then(() => { showToast('📋 Numara kopyalandı!');
+                    vibrate([15]); })
+                .catch(() => showToast('Kopyalanamadı, elle yazman gerekecek 😅'));
+        }
+
+        /* ===================================================
+           ACİL KONUM GÖNDER (YENİ)
+           =================================================== */
+        function sendLocation() {
+            if (!navigator.geolocation) {
+                showToast('📍 Tarayıcın konum desteği yok. WhatsApp\'tan manuel gönder.');
+                window.open(`https://wa.me/${OWNER_PHONE}?text=Acil!%20Konumumu%20gönderemiyorum,%20lütfen%20arayın.`,
+                '_blank');
+                return;
+            }
+            showToast('📍 Konum alınıyor...');
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const { latitude, longitude } = pos.coords;
+                    const mapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                    const msg = encodeURIComponent(`📍 Acil! Motorum burada: ${mapsUrl}`);
+                    window.open(`https://wa.me/${OWNER_PHONE}?text=${msg}`, '_blank');
+                    vibrate([30, 20, 30]);
+                    showToast('📍 Konum WhatsApp\'ta hazır!');
+                },
+                (err) => {
+                    showToast('📍 Konum alınamadı. WhatsApp\'tan manuel gönder.');
+                    window.open(`https://wa.me/${OWNER_PHONE}?text=Acil!%20Konumumu%20paylaşamıyorum,%20arayın.`,
+                    '_blank');
+                }, { enableHighAccuracy: true, timeout: 8000 }
+            );
+        }
+
+        /* ===================================================
+           RASTGELE MOTOR BİLGİSİ (YENİ)
+           =================================================== */
+        const motorFacts = [
+            "🏍️ Honda PCX 125, 2023 modelde 12.4 bg gücünde!",
+            "⛽ 100 km'de ortalama 2.2 litre yakıyor.",
+            "🛵 Sele altında 28 litre depo hacmi var.",
+            "⚡ 2023 PCX, start-stop sistemi ile yakıt tasarrufu sağlar.",
+            "🔧 V-matic şanzıman, sürüşü pürüzsüzleştirir.",
+            "💨 Rüzgarlık sayesinde yüksek hızda konfor artar.",
+            "🎨 2023 modelde 4 farklı renk seçeneği var.",
+            "🏁 0-100 km/s hızlanması yaklaşık 16 saniye.",
+            "🔋 Akü 12V-5Ah, start-stop için optimize edilmiş.",
+            "🛞 Ön ve arka 14 inç jantlar, yol tutuşu iyileştirir.",
+            "💡 Tamamen LED aydınlatma, gece görüşü mükemmel.",
+            "📱 Akıllı anahtar sistemi ile uzaktan kumanda.",
+            "🧰 2 yıl / 20.000 km garantili.",
+            "🇯🇵 Honda, Japonya'dan dünyaya yayılan efsane.",
+            "🤫 Susturucu Euro5 normlarına uygun, sessiz ve çevreci."
+        ];
+
+        function showRandomFact() {
+            const fact = motorFacts[Math.floor(Math.random() * motorFacts.length)];
+            showToast(fact, 3000);
+            vibrate([10]);
+        }
+
+        /* ===================================================
+           MOTORU ÇALIŞTIR (SES + TİTREŞİM + IŞIK) (YENİ)
+           =================================================== */
+        let engineRunning = false;
+
+        function startEngine() {
+            if (engineRunning) {
+                showToast('🏍️ Motor zaten çalışıyor!');
+                return;
+            }
+            engineRunning = true;
+            vibrate([50, 30, 50, 30, 100]);
+            showToast('🏍️ Brum brum! Motor çalıştı!', 1500);
+
+            // Ses
+            try {
+                const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sawtooth';
+                const now = audioCtx.currentTime;
+
+                // Rölanti
+                osc.frequency.setValueAtTime(40, now);
+                gain.gain.setValueAtTime(0.15, now);
+
+                // Gaz açma
+                osc.frequency.exponentialRampToValueAtTime(220, now + 0.3);
+                gain.gain.exponentialRampToValueAtTime(0.35, now + 0.3);
+
+                // Vututu
+                osc.frequency.exponentialRampToValueAtTime(400, now + 0.7);
+                gain.gain.exponentialRampToValueAtTime(0.5, now + 0.7);
+
+                // Rölantiye dön
+                osc.frequency.exponentialRampToValueAtTime(60, now + 1.2);
+                gain.gain.exponentialRampToValueAtTime(0.1, now + 1.2);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 1.8);
+
+                // Işık efekti (flaş)
+                if (navigator.vibrate) navigator.vibrate([30, 20, 30, 20, 30]);
+
+                setTimeout(() => {
+                    engineRunning = false;
+                }, 2000);
+            } catch (e) {
+                showToast('🔊 Brum brum! (Ses çalmadı ama hissettin!)');
+                setTimeout(() => { engineRunning = false; }, 1500);
+            }
+        }
+
+        /* ===================================================
+           SES EFEKTLERİ MENÜSÜ (YENİ)
+           =================================================== */
+        function showSoundMenu() {
+            openModal('soundMenuModal');
+        }
+
+        function playSoundEffect(type) {
+            closeModal('soundMenuModal');
+            try {
+                const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const now = audioCtx.currentTime;
+
+                switch (type) {
+                    case 'exhaust':
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(80, now);
+                        osc.frequency.exponentialRampToValueAtTime(350, now + 0.2);
+                        osc.frequency.exponentialRampToValueAtTime(120, now + 0.45);
+                        osc.frequency.exponentialRampToValueAtTime(250, now + 0.7);
+                        gain.gain.setValueAtTime(0.4, now);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.9);
+                        showToast('💥 Patlama!');
+                        vibrate([40, 20, 40]);
+                        break;
+                    case 'horn':
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(480, now);
+                        osc.frequency.setValueAtTime(580, now + 0.1);
+                        osc.frequency.setValueAtTime(480, now + 0.2);
+                        gain.gain.setValueAtTime(0.25, now);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                        showToast('📯 Korna!');
+                        vibrate([20, 20, 20, 20, 20]);
+                        break;
+                    case 'idle':
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(55, now);
+                        osc.frequency.exponentialRampToValueAtTime(70, now + 0.5);
+                        gain.gain.setValueAtTime(0.1, now);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                        showToast('🔄 Rölanti...');
+                        vibrate([10]);
+                        break;
+                    case 'rev':
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(60, now);
+                        osc.frequency.exponentialRampToValueAtTime(600, now + 0.6);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.exponentialRampToValueAtTime(0.3, now + 0.3);
+                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                        showToast('🚀 Gaz açıldı!');
+                        vibrate([30, 30, 30]);
+                        break;
+                    default:
+                        return;
+                }
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now);
+                osc.stop(now + 1.0);
+            } catch (e) {
+                showToast('🔊 Ses çalınamadı ama efekt kafanda!');
+            }
+        }
+
+        /* ===================================================
+           GİZLİ TURBO (RİCKROLL)
+           =================================================== */
+        function gizliOzellik() {
+            vibrate([10, 20, 10]);
+            alert('⚠️ UYARI: Turbo Modu İçin Kask Takmanız Gerekmektedir!');
+            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+        }
+
+        /* ===================================================
+           KONFETİ (5 yıldız)
+           =================================================== */
+        function confetti() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const colors = ['#ff3366', '#ffbe0b', '#00f2fe', '#10b981', '#8b5cf6', '#f472b6', '#34d399'];
+            for (let i = 0; i < 40; i++) {
+                const el = document.createElement('div');
+                el.style.position = 'fixed';
+                el.style.top = '-10px';
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.width = (4 + Math.random() * 8) + 'px';
+                el.style.height = (4 + Math.random() * 8) + 'px';
+                el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                el.style.opacity = '0.9';
+                el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                el.style.zIndex = '2000';
+                el.style.pointerEvents = 'none';
+                document.body.appendChild(el);
+
+                const duration = 1800 + Math.random() * 1400;
+                const rotate = Math.random() * 720 - 360;
+                const drift = (Math.random() - 0.5) * 160;
+
+                el.animate([
+                    { transform: 'translate(0, 0) rotate(0deg)', opacity: 1 },
+                    { transform: `translate(${drift}px, 100vh) rotate(${rotate}deg)`, opacity: 0 }
+                ], { duration, easing: 'ease-in' });
+
+                setTimeout(() => el.remove(), duration + 50);
+            }
+        }
+
+        /* ===================================================
+           PWA / SERVICE WORKER (Basit)
+           =================================================== */
+        if ('serviceWorker' in navigator) {
+            // Basit bir service worker için sadece kayıt denemesi
+            // (Bu proje için statik olduğundan gerçek bir SW dosyası yok,
+            //  ama ileride eklenebilir)
+            console.log('PWA desteği hazır.');
+        }
+
+        /* ===================================================
+           SAYFA YÜKLENDİĞİNDE
+           =================================================== */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Yakıt göstergesini yenile
+            updateFuel();
+            // Notları yükle
+            loadNotes();
+        });
     </script>
+
 </body>
 </html>
