@@ -26,8 +26,6 @@
             --text-main: #ffffff;
             --text-sub: #a0a5b5;
             --shadow-color: rgba(0, 0, 0, 0.6);
-            --gradient-start: #0b0c10;
-            --gradient-end: #1a1e2a;
             --toast-bg: #16181e;
         }
 
@@ -39,8 +37,6 @@
             --text-main: #1a1a1a;
             --text-sub: #4a4a5a;
             --shadow-color: rgba(0, 0, 0, 0.1);
-            --gradient-start: #e8ecf1;
-            --gradient-end: #d5dbe3;
             --toast-bg: #ffffff;
         }
 
@@ -527,15 +523,7 @@
             .btn-emergency {
                 animation: pulse-border 2s infinite;
             }
-            .avatar-container,
-            h1,
-            .subtitle,
-            .status-box,
-            .visit-stats,
-            .fuel-container,
-            .datetime,
-            .btn-list .btn,
-            footer {
+            .avatar-container, h1, .subtitle, .status-box, .visit-stats, .fuel-container, .datetime, .btn-list .btn, footer {
                 opacity: 0;
                 animation: fadeInUp 0.6s ease forwards;
             }
@@ -568,27 +556,14 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(14px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== SCROLL BAR ===== */
-        .notes-history::-webkit-scrollbar {
-            width: 4px;
-        }
-        .notes-history::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .notes-history::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 10px;
-        }
+        .notes-history::-webkit-scrollbar { width: 4px; }
+        .notes-history::-webkit-scrollbar-track { background: transparent; }
+        .notes-history::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -823,14 +798,8 @@
     <div id="toast" class="toast"></div>
 
     <script>
-        /* ===================================================
-           KONFİGÜRASYON
-           =================================================== */
         const OWNER_PHONE = '905051760929';
 
-        /* ===================================================
-           YARDIMCI FONKSİYONLAR
-           =================================================== */
         function vibrate(pattern) {
             if (navigator.vibrate) navigator.vibrate(pattern);
         }
@@ -844,9 +813,6 @@
             toastTimer = setTimeout(() => t.classList.remove('show'), ms);
         }
 
-        /* ===================================================
-           TEMA DEĞİŞTİRME
-           =================================================== */
         (function initTheme() {
             const stored = localStorage.getItem('motorTheme') || 'dark';
             document.documentElement.setAttribute('data-theme', stored);
@@ -875,9 +841,6 @@
             }
         }
 
-        /* ===================================================
-           SAAT & TARİH
-           =================================================== */
         function updateClock() {
             const now = new Date();
             const h = String(now.getHours()).padStart(2, '0');
@@ -896,11 +859,8 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        /* ===================================================
-           YAKIT GÖSTERGESİ (Rastgele)
-           =================================================== */
         function updateFuel() {
-            const percent = Math.floor(Math.random() * 41) + 30; // %30 – %70 arası
+            const percent = Math.floor(Math.random() * 41) + 30;
             document.getElementById('fuelFill').style.width = percent + '%';
             document.getElementById('fuelPercent').textContent = percent + '%';
 
@@ -911,9 +871,6 @@
         }
         updateFuel();
 
-        /* ===================================================
-           ZİYARET SAYACI (localStorage)
-           =================================================== */
         function updateVisitCounter() {
             let total = parseInt(localStorage.getItem('motorQrTotalVisits') || '0', 10);
             total += 1;
@@ -935,9 +892,6 @@
         }
         updateVisitCounter();
 
-        /* ===================================================
-           NOTLAR GEÇMİŞİ (localStorage)
-           =================================================== */
         function loadNotes() {
             const notes = JSON.parse(localStorage.getItem('motorNotes') || '[]');
             const container = document.getElementById('notesHistoryContainer');
@@ -975,9 +929,6 @@
         }
         loadNotes();
 
-        /* ===================================================
-           MODAL İŞLEMLERİ
-           =================================================== */
         function openModal(id) {
             document.getElementById(id).classList.add('active');
         }
@@ -994,9 +945,6 @@
             });
         });
 
-        /* ===================================================
-           PARK PUANLAMA
-           =================================================== */
         let currentRating = 0;
         function rate(stars) {
             currentRating = stars;
@@ -1020,9 +968,6 @@
             }
         }
 
-        /* ===================================================
-           NOT BIRAKMA
-           =================================================== */
         function updateCharCount() {
             const ta = document.getElementById('noteText');
             document.getElementById('noteCharCount').textContent = ta.value.length + ' / 300';
@@ -1045,9 +990,6 @@
             updateCharCount();
         }
 
-        /* ===================================================
-           SAYFAYI PAYLAŞ (Geliştirilmiş & Güvenli Fallback)
-           =================================================== */
         async function shareSite() {
             vibrate([15]);
             const shareData = {
@@ -1089,9 +1031,6 @@
             }
         }
 
-        /* ===================================================
-           NUMARA KOPYALA
-           =================================================== */
         function copyPhone() {
             const phoneNumber = '+90 505 176 09 29';
             vibrate([15]);
@@ -1122,9 +1061,6 @@
             }
         }
 
-        /* ===================================================
-           ACİL KONUM GÖNDER
-           =================================================== */
         function sendLocation() {
             if (!navigator.geolocation) {
                 showToast('📍 Tarayıcında konum desteği yok. WhatsApp\'tan manuel gönder.');
@@ -1148,9 +1084,6 @@
             );
         }
 
-        /* ===================================================
-           RASTGELE MOTOR BİLGİSİ
-           =================================================== */
         const motorFacts = [
             "🏍️ Honda PCX 125, 2023 modelde 12.4 bg gücünde!",
             "Eşsiz eSP+ motor teknolojisiyle düşük yakıt tüketimi sunar.",
@@ -1175,9 +1108,6 @@
             vibrate([10]);
         }
 
-        /* ===================================================
-           MOTORU ÇALIŞTIR (SES + TİTREŞİM)
-           =================================================== */
         let engineRunning = false;
         function startEngine() {
             if (engineRunning) {
@@ -1222,9 +1152,6 @@
             }
         }
 
-        /* ===================================================
-           SES EFEKTLERİ MENÜSÜ
-           =================================================== */
         function showSoundMenu() {
             openModal('soundMenuModal');
         }
@@ -1290,18 +1217,12 @@
             }
         }
 
-        /* ===================================================
-           GİZLİ TURBO (RICKROLL)
-           =================================================== */
         function gizliOzellik() {
             vibrate([10, 20, 10]);
             alert('⚠️ UYARI: Turbo Modu İçin Kask Takmanız Gerekmektedir!');
             window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
         }
 
-        /* ===================================================
-           KONFETİ (5 Yıldız Efekti)
-           =================================================== */
         function confetti() {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             const colors = ['#ff3366', '#ffbe0b', '#00f2fe', '#10b981', '#8b5cf6', '#f472b6', '#34d399'];
@@ -1332,9 +1253,6 @@
             }
         }
 
-        /* ===================================================
-           SAYFA YÜKLENDİĞİNDE
-           =================================================== */
         document.addEventListener('DOMContentLoaded', function() {
             updateFuel();
             loadNotes();
