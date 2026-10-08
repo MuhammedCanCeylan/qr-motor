@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5f2">
+  <meta name="description" content="Honda PCX 125 dijital garajı: iletişim, mini oyunlar, profil, istatistikler ve eğlenceli özellikler.">
+  <script>if(location.protocol==="https:"||location.protocol==="http:"){const manifest=document.createElement("link");manifest.rel="manifest";manifest.href="./manifest.webmanifest";document.head.appendChild(manifest);}</script>
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/redesign.css">
+  <link rel="stylesheet" href="css/arcade.css">
+  <link rel="stylesheet" href="css/personal.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/showroom.css">
+  <link rel="stylesheet" href="css/visitor.css">
+  <title>PCX Hub</title>
+</head>
+<body data-view="home"><a class="skip-link" href="#main">İçeriğe geç</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" id="secretBadge" aria-label="PCX Hub" tabindex="0" role="button"><span class="brand-mark">P</span><div><strong>PCX Hub</strong><small data-version>v8.0.0</small></div></div>
+      <div class="top-actions">
+        <button class="icon-btn" id="installBtn" hidden aria-label="Uygulamayı yükle">⇩</button>
+        <button class="icon-btn" id="themeToggle" aria-label="Renk temasını değiştir">☀️</button>
+        <button aria-label="Sürücü profilini aç" class="avatar-btn" data-open-sheet="profileSheet"><span data-level>1</span></button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="view active" id="view-home">
+        <section class="story-track story-simple" id="storyTrack" aria-label="PCX şehir yolculuğu">
+          <div class="story-frame" id="storyFrame" data-scene="0">
+            <div class="story-topline"><span>PCX / THE CITY IS YOURS</span><div><button id="motionToggle" aria-pressed="true">Hareket açık</button><button id="playStory" aria-pressed="false">Turu oynat ▷</button><button id="skipStory">Doğrudan keşfet ↘</button></div></div>
+            <div class="scene-world" aria-hidden="true">
+              <div class="scene-orbit orbit-one"></div><div class="scene-orbit orbit-two"></div><div class="scene-sun"></div>
+              <span class="scene-word">PCX</span><div class="city-far"></div><div class="city-near"></div>
+              <div class="scene-road"><i></i><i></i><i></i></div><div class="scene-dust"></div>
+              <div class="bike-platform"></div>
+              <div class="story-bike" id="storyBike"><div id="modelMount" class="model-mount"></div><img src="assets/pcx-side.svg" width="1170" height="795" alt="" fetchpriority="high" decoding="async"></div>
+              <span class="scene-coordinate">41° N / EVERYDAY ADVENTURES</span>
+            </div>
+            <div class="story-panels">
+              <article class="story-panel panel-arrival" data-panel="0">
+                <div class="chapter-label"><i></i> 01 — İLK BAKIŞ</div>
+                <h1>Şehir senin.<br><em>Hikâye senin.</em></h1>
+                <p>Her açıdan başka bir hikâye.<br>PCX’i keşfet. Şehrin ritmine katıl.</p>
+                <div class="scene-actions"><button class="primary" data-open-sheet="contactSheet">Sahibine ulaş <span>↗</span></button><button class="scene-link" data-showroom>360° incele ↗</button></div>
+                <img class="scene-still" src="assets/pcx-side.svg" alt="Honda PCX yandan görünüm" width="1170" height="795">
+              </article>
+              <article class="story-panel panel-city" data-panel="1">
+                <div class="chapter-label"><i></i> 02 — KÜÇÜK BİR SIR</div>
+                <h2>Bir QR okut.<br><em>Meraka yenil.</em></h2>
+                <p>Burada her düğme masum sayılmaz.<br>Biraz oyun, biraz şaka. Gerisi keşif.</p>
+                <div class="scene-actions"><button class="primary" data-go="tools">Kulise uğra ↗</button><button class="scene-link" data-go="garage">Garajı keşfet →</button></div>
+              </article>
+              <article class="story-panel panel-play" data-panel="2">
+                <div class="chapter-label"><i></i> 03 — MOLA MODU</div>
+                <h2>Yol biter.<br><em>Oyun başlar.</em></h2>
+                <p>On bir oyun. Küçük meydan okumalar.<br>Sıradaki rekorun, bir dokunuş uzağında.</p>
+                <div class="scene-actions"><button class="primary" data-go="games">Oyun alanına gir ↗</button><button class="scene-link" data-story-hub>Hepsini keşfet ↓</button></div>
+              </article>
+            </div>
+            <div class="model-entry"><button id="activateModel">3D’yi başlat <span>↗</span></button><span id="modelStatus" role="status">GERÇEK MODEL · 1,9 MB · İSTEĞE BAĞLI</span></div>
+            <div class="story-bottomline"><span class="scroll-cue">KAYDIR, HİKÂYE DEVAM ETSİN <b>↓</b></span><div class="chapter-nav" aria-label="Hikâye bölümleri"><button data-chapter="0" aria-label="İlk bakış bölümüne git" aria-current="step"><span>01</span><i></i></button><button data-chapter="1" aria-label="Kendi rotan bölümüne git"><span>02</span><i></i></button><button data-chapter="2" aria-label="Mola modu bölümüne git"><span>03</span><i></i></button></div></div>
+          </div>
+        </section>
+        <div class="home-content" id="homeHub" tabindex="-1">
+        <section class="studio-card" aria-labelledby="studioTitle"><div class="studio-copy"><span class="kicker">THE PCX STUDIO / 01</span><h2 id="studioTitle">Bakış açını<br><em>değiştir.</em></h2><p>Çizgiler, dokular, küçük detaylar.<br>PCX’i 360° döndür, yaklaş ve keşfet.</p><button class="primary" data-showroom>Stüdyoya gir <span>↗</span></button><div class="studio-tags"><span>360° görünüm</span><span>Gece ışığı</span><span>Dokun & döndür</span></div></div><div class="studio-art"><span class="studio-word" aria-hidden="true">PCX</span><img src="assets/pcx-side.svg" alt="PCX, 3D stüdyo önizlemesi" loading="lazy" width="1170" height="795"><span class="studio-caption">A DIFFERENT POINT OF VIEW.</span></div></section>
+        <div class="hub-intro"><span class="kicker">MOLANI SEN SEÇ</span><h2>Biraz keşif.<br>Biraz <em>keyif.</em></h2><p>İster bir tur oyna, ister garajı keşfet.<br>Burada aceleye gerek yok.</p></div>
+        <div class="featured-ride"><div><span class="kicker">CITY RIDE / OYNA & KEŞFET</span><h3>Bir QR. Biraz fazla gaz.</h3><p>Nitroya bas, tempoya yetiş. 1000 puanda işler biraz değişir.</p><button class="primary" data-game="ride">Bir tur başlat ↗</button></div><div class="ride-poster" aria-hidden="true"><div class="poster-road"><i></i><b></b><em></em></div><span>RIDE.<br>REPEAT.</span></div></div>
+        <div class="home-heading"><h2>Garajın ötesinde</h2><span>Keşfet, oyna, seviye atla.</span></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-go="games"><span data-icon="game"></span><strong>Bir tur oyna <b>↗</b></strong><small>On bir oyun. Yeni bir rekor.</small></button>
+          <button class="quick-card" data-go="garage"><span data-icon="garage"></span><strong>Garajı keşfet <b>↗</b></strong><small>PCX'in dijital kimliği.</small></button>
+          <button class="quick-card" data-go="fun"><span data-icon="spark"></span><strong>Biraz eğlen <b>↗</b></strong><small>Sesler, rozetler ve sürprizler.</small></button>
+        </div>
+        <button class="personal-home-link" data-go="tools"><span data-icon="flag"></span><span><strong>QR’ı okuttun. Artık bizdensin.</strong><small>Kulis, motorun iç sesi ve küçük sırlar.</small></span><b>↗</b></button>
+        <div class="stat-strip">
+          <div><small>Seviye</small><strong>Lv. <span data-level>1</span></strong></div>
+          <div><small>XP</small><strong data-xp>0</strong></div>
+          <div><small>Jeton</small><strong><span data-coins>0</span></strong></div>
+          <div><small>Günlük seri</small><strong><span data-streak>1</span></strong></div>
+        </div>
+
+        <section class="section-card profile-progress">
+          <div class="section-heading"><div><span class="kicker">SÜRÜCÜ PROFİLİ</span><h2 data-player-name>Misafir Sürücü</h2></div><button class="text-btn" data-open-sheet="profileSheet">Düzenle</button></div>
+          <div class="progress"><i id="xpBarFill"></i></div><small id="xpCaption">0 / 500 XP</small>
+        </section>
+
+        <section class="section-card daily-card">
+          <div class="section-heading"><div><span class="kicker">GÜNLÜK GÖREV</span><h2>3 mini oyun tamamla</h2></div><strong class="reward">+250 XP</strong></div>
+          <p>Bugün oyun alanında üç oyun bitir ve ödülünü al.</p>
+          <div class="progress"><i id="dailyBarFill"></i></div>
+          <div class="daily-footer"><span id="dailyProgress">0 / 3 oyun</span><button id="dailyClaim" disabled>3 oyun tamamla</button></div>
+        </section>
+
+        <section class="section-card dashboard-card">
+          <div class="dashboard-top"><div><span id="liveClock">--:--</span><small id="liveDate">---</small></div><div class="status-pill">Kişisel garaj</div></div>
+          <div class="dash-grid"><div><small>Bu cihazdan ziyaret</small><strong data-visits>0</strong></div><div><small>Oynanan oyun</small><strong data-games-played>0</strong></div><div><small>Sahibi</small><strong data-owner-name>Muhammed</strong></div></div>
+        </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-games">
+        <div class="page-head"><div><span class="kicker">PCX ARCADE</span><h1>Bir tur daha.</h1><p>Dokun, kaydır, oyna. İndirme yok; kısa bir mola yeter.</p></div><div class="level-chip">Lv. <span data-level>1</span></div></div>
+        <div class="arcade-edition"><span id="arcadeGameCount">11 oyun · Senin molan</span><span>ARCADE / VOL. 08</span></div><section id="dailyArcade" class="daily-arcade"></section>
+        <div class="arcade-filters" aria-label="Oyun filtreleri"><button data-filter="all" aria-pressed="true">Tümü · 11</button><button data-filter="action" aria-pressed="false">Hız & refleks</button><button data-filter="calm" aria-pressed="false">Sakin bir mola</button><button data-filter="favorites" aria-pressed="false">★ Favoriler</button></div>
+        <div id="lastGame"></div><div class="arcade-grid" id="arcadeGrid"></div>
+        <section class="section-card"><div class="section-heading"><div><span class="kicker">BU TARAYICIDAKİ REKORLARIN</span><h2>Her tur biraz daha iyi.</h2></div></div><div class="records" id="arcadeRecords"></div></section>
+      </section>
+
+      <section class="view" id="view-garage">
+        <div class="page-head"><div><span class="kicker">MOTORUN DİJİTAL KİMLİĞİ</span><h1>Garaj</h1><p>Motorun dijital kimliği ve geçmişi.</p></div></div>
+        <div class="garage-hero"><img class="garage-bike" src="assets/pcx-side.svg" alt="Honda PCX yandan görünüm"><div><span>HONDA</span><h2>PCX 125</h2><p>2023 · Şehir içi günlük kullanım</p></div></div>
+        <button class="garage-studio-link" data-showroom><span>PCX STUDIO</span><strong>Motoru 360° keşfet</strong><b>↗</b></button><div class="spec-grid"><div><span>Motor</span><b>125 cc</b></div><div><span>Sistem</span><b>eSP+</b></div><div><span>Yakıt</span><b>Akıllı kullanım</b></div><div><span>Anahtar</span><b>Smart Key</b></div></div>
+        <section class="section-card paint-garage"><div class="section-heading"><div><span class="kicker">CITY RIDE · OYUN KOLEKSİYONU</span><h2>Bir garaj dolusu hayal.</h2></div><strong class="reward" id="paintBalance">0 jeton</strong></div><p>Oyunlardan jeton kazan, City Ride motorunu değiştir. Altın Motor: 9999 jeton. Evet, fiyat doğru.</p><div class="ride-preview" id="ridePreview"><div class="preview-road"></div><div class="preview-bike"><i></i><b></b></div><span>YOUR CITY. YOUR RIDE.</span></div><div class="paint-shop" id="paintShop"></div><small class="privacy-note">Bu koleksiyon sana özeldir ve bu tarayıcıda saklanır. Gerçek motorun bilgilerini değiştirmez.</small></section>
+        <section class="section-card"><div class="section-heading"><div><span class="kicker">YOLCULUK</span><h2>Motor Günlüğü</h2></div></div><div class="timeline"><article><i></i><div><b>2026</b><h3>PCX Hub yenilendi</h3><p>QR/AR etiketi artık oyunlu dijital garaja açılıyor.</p></div></article><article><i></i><div><b>2023</b><h3>PCX yollarda</h3><p>Dijital profilin başlangıç yılı.</p></div></article></div></section>
+      </section>
+
+      <section class="view" id="view-tools">
+        <div class="page-head"><div><span class="kicker">QR'I OKUTANLAR KULÜBÜ</span><h1>Kulis.</h1><p>Bir motosiklete bakmaya geldin. Buraya kadar geldin.</p></div></div>
+        <section class="visitor-ticket"><div><span class="kicker">GİRİŞ: BİR QR / ÇIKIŞ: BİR TUR DAHA</span><h2>Meraklı yolcu,<br><em>hoş geldin.</em></h2><p>Bu köşe QR’ı okutan herkes için. Oyunlar, ufak şakalar ve bulmanı bekleyen sırlar.</p><button class="primary" data-go="games">Bir oyun seç ↗</button></div><div class="ticket-stamp" aria-hidden="true"><span>PCX</span><strong>QR<br>CLUB</strong><small>EST. 2026</small></div></section>
+        <div class="visitor-columns"><section class="section-card motor-voice"><span class="kicker">MOTORUN İÇ SESİ</span><h2>Bir şey diyeceğim.</h2><p id="motorQuote" role="status">Benzin almadan jeton kazanıyorsun. Ekonomiyi çözdün.</p><button class="secondary" id="motorTalk">Motor ne düşünüyor?</button><small>Şaka üretir. Sahibine mesaj göndermez.</small></section><section class="section-card forbidden-card"><span class="kicker">ÇOK CİDDİ BİR DÜĞME</span><h2>Burada hiçbir şey yok.</h2><p>Teknik ekip bu düğmeyi koymuş. Biz de sorgulamadık.</p><button id="forbiddenButton" class="secondary">DOKUNMA</button><p id="forbiddenResponse" role="status">Özellikle de art arda.</p></section></div>
+        <section class="section-card"><div class="section-heading"><div><span class="kicker">KEŞİF DEFTERİ</span><h2>Küçük sırlar</h2></div><span id="secretCount" class="reward">0 bulundu</span></div><p>Bir kısmı oyunda, bir kısmı gözünün önünde. İpuçları burada; sürprizler sende.</p><div id="secretGrid" class="secret-grid"></div></section>
+        <p class="privacy-note">Skorlar ve keşifler bu tarayıcıda tutulur. Ortak sıralama veya konum takibi yoktur.</p>
+      </section>
+      <section class="view" id="view-fun">
+        <div class="page-head"><div><span class="kicker">FUN ZONE</span><h1>İlerleme merkezi</h1><p>Küçük hedefler, yeni rekorlar. Kendi ritminde ilerle.</p></div></div>
+        <section class="section-card"><div class="section-heading"><div><span class="kicker">BUGÜNÜN EK HEDEFLERİ</span><h2>Bir adım daha.</h2></div></div><div id="missionList"></div></section>
+        <div class="personal-columns"><section class="section-card"><span class="kicker">OYUN ALIŞKANLIKLARIN</span><h2>En çok ne oynadın?</h2><div id="playStats"></div><p class="privacy-note">Oyun başına sayım v5 ile başlar. Önceki toplam oyun sayın ve rekorların korunur.</p></section><section class="section-card"><span class="kicker">SON 30 TAMAMLANAN TUR</span><h2>Son turların</h2><div id="gameHistory"></div></section></div>
+        <div class="sound-grid"><button data-sound="idle"><span>🔄</span><b>Rölanti</b></button><button data-sound="rev"><span>🏁</span><b>Gaz Aç</b></button><button data-sound="horn"><span>📯</span><b>Korna</b></button></div>
+        <section class="section-card"><div class="section-heading"><div><span class="kicker">BAŞARILAR</span><h2>Rozet koleksiyonu</h2></div></div><div id="achievementGrid" class="achievement-grid"></div></section>
+        <section class="section-card"><div class="section-heading"><div><span class="kicker">PAYLAŞ</span><h2>PCX Hub'ı gönder</h2></div></div><p>Arkadaşına gönder veya ana ekrana ekle.</p><div class="action-row"><button id="shareBtn" class="secondary">Paylaş</button><button id="instagramBtn" class="secondary"><span data-instagram-handle>@...</span></button></div></section>
+      </section>
+    <footer class="site-footer"><span>PCX HUB <b>Şehirde bir iz bırak.</b></span><small>Muhammed Can Ceylan · <span data-version></span></small></footer></main>
+
+    <nav class="bottom-nav" aria-label="Ana menü">
+      <button class="nav-btn active" data-view="home"><span>⌂</span><small>Ana Sayfa</small></button>
+      <button class="nav-btn" data-view="games"><span>🎮</span><small>Oyunlar</small></button>
+      <button class="nav-btn" data-view="garage"><span>🛵</span><small>Garaj</small></button>
+      <button class="nav-btn" data-view="tools"><span>⌖</span><small>Kulis</small></button>
+      <button class="nav-btn" data-view="fun"><span>✦</span><small>İlerleme</small></button>
+    </nav>
+  </div>
+
+  <div class="sheet-backdrop" id="contactSheet">
+    <div class="sheet"><div class="sheet-handle"></div><div class="sheet-head"><div><span class="kicker">ACİL / HIZLI İLETİŞİM</span><h2>Sahibine ulaş</h2></div><button data-close-sheet="contactSheet">×</button></div>
+      <div class="contact-primary"><button id="directWhatsApp">💬 WhatsApp</button><button id="directCall">☎️ Ara</button><button id="sendLocation">📍 Konum</button></div>
+      <h3 class="mini-title">Ne oldu?</h3><div class="reason-list"><button data-contact="blocking">🚧 Motor yolu kapatıyor</button><button data-contact="fallen">⚠️ Motor devrilmiş olabilir</button><button data-contact="light">💡 Işık açık kalmış</button><button data-contact="damage">🩹 Hasar fark ettim</button><button data-contact="key">🔑 Anahtar/eşya unutulmuş</button><button data-contact="other">✍️ Başka bir konu</button></div>
+      <button class="copy-line" id="copyPhone">Numarayı kopyala</button>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="profileSheet">
+    <div class="sheet"><div class="sheet-handle"></div><div class="sheet-head"><div><span class="kicker">SANA ÖZEL</span><h2>Sürücü profili</h2></div><button data-close-sheet="profileSheet">×</button></div>
+      <label class="field"><span>Oyuncu adı</span><div><input id="nicknameInput" maxlength="18" placeholder="Örn. NightRider42"><button id="randomNickname">🎲</button></div></label>
+      <button class="primary full" id="saveNickname">Profili Kaydet</button>
+      <div class="action-row"><button id="exportData" class="secondary">Yedek indir</button><button id="importData" class="secondary">Yedek yükle</button><input id="backupFile" type="file" accept="application/json,.json" hidden></div><div class="settings"><label><span>Ses efektleri</span><input type="checkbox" id="soundToggle"></label><label><span>Titreşim / haptic</span><input type="checkbox" id="hapticToggle"></label></div>
+      <p class="privacy-note">Profilin ve rekorların bu tarayıcıda saklanır. Tarayıcı verilerini temizlemeden önce yedek alabilirsin.</p>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop game-sheet" id="gameSheet">
+    <div class="sheet game-sheet-inner"><div class="sheet-head"><h2 id="gameTitle">Oyun</h2><button id="closeGame">×</button></div><div id="gameStage"></div></div>
+  </div>
+
+<dialog id="showroom" class="showroom" aria-labelledby="showroomTitle" aria-describedby="showroomHelp"><div class="showroom-head"><div><span class="kicker">PCX / INTERACTIVE STUDIO</span><h2 id="showroomTitle">Her açıdan <em>PCX.</em></h2></div><button id="closeShowroom" autofocus aria-label="3D stüdyoyu kapat">×</button></div><div class="showroom-stage"><span class="showroom-word" aria-hidden="true">PCX</span><img class="showroom-fallback" src="assets/pcx-side.svg" alt="Honda PCX yandan görünüm"><div id="showroomMount" class="model-mount" tabindex="0" role="group" aria-label="3D model alanı. Açı düğmelerini veya dokunarak sürüklemeyi kullan. Artı ve eksi ile yakınlaştır, R ile sıfırla."></div><div class="showroom-zoom"><button id="zoomIn" aria-label="Modeli yakınlaştır">+</button><button id="zoomOut" aria-label="Modeli uzaklaştır">−</button><button id="resetModel" aria-label="Kamerayı sıfırla">↺</button></div><div class="showroom-loading"><span id="showroomStatus" role="status">Model hazırlanıyor…</span><button id="retryModel" hidden>Tekrar dene</button></div></div><div class="showroom-controls"><div class="angle-controls" aria-label="Kamera açısı"><button data-angle="front" aria-pressed="false">Ön</button><button data-angle="side" aria-pressed="false">Yan</button><button data-angle="rear" aria-pressed="false">Arka</button><button data-angle="detail" aria-pressed="false">Detay</button></div><div class="light-controls"><button id="lightModel" aria-pressed="false">Gece ışığı</button><button id="spinModel" aria-pressed="false">Yavaş dönüş</button></div><p id="showroomHelp">Tek parmakla döndür · İki parmakla yakınlaş · Açı düğmeleriyle keşfet</p></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/icons.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/arcade.js" defer></script>
+  <script src="js/ride-engine.js" defer></script>
+  <script src="js/ride.js" defer></script>
+  <script src="js/extra-games.js" defer></script>
+  <script src="js/games.js" defer></script>
+  <script src="js/visitor.js" defer></script>
+  <script src="js/personal.js" defer></script>
+  <script src="js/story.js" defer></script>
+  <script src="js/showroom.js" defer></script>
+</body>
+</html>
